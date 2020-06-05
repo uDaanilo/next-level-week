@@ -10,4 +10,6 @@ Este projeto consiste em criar uma API usando Typescript e outras tecnologias pa
   - [X] Criar rotas dos pontos de coletas (02/06)
   - [X] Criar rotas dos itens de coleta (02/06)
 - [X] Criar boilerplate do frontend (01/06)
+  - [X] Criar pagina home (05/06)
+  - [X] Criar pagina de cadastro de ponto de coleta (05/06)
 - [ ] Criar boilerplate do mobile
