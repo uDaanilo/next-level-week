@@ -8,7 +8,7 @@ class ItemsController {
     const serializedItems = items.map(item => {
       return {
         ...item,
-        image_url: `http://localhost:3000/uploads/${item.image}`
+        image_url: `http://192.168.100.11:3000/uploads/${item.image}`
       }
     })
 
@@ -22,7 +22,7 @@ class ItemsController {
   async update(req: Request, res: Response){
 
   }
-  
+
   async delete(req: Request, res: Response){
 
   }
