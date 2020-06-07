@@ -10,6 +10,8 @@ import './styles.css'
 
 import logo from '../../assets/logo.svg'
 
+import Dropzone from '../../components/Dropzone'
+
 interface Item {
   id: number
   title: string
@@ -43,6 +45,7 @@ const CreatePoint = () => {
   const [selectedUf, setSelectedUf] = useState('0')
   const [selectedCity, setSelectedCity] = useState('0')
   const [selectedItems, setSelectedItems] = useState<number[]>([])
+  const [selectedFile, setSelectedFile] = useState<File>()
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -125,16 +128,17 @@ const CreatePoint = () => {
 
     if(isNaN(whatsapp)) return alert('Numero invalido')
 
-    const data = {
-      name,
-      email,
-      whatsapp,
-      uf,
-      city,
-      lat,
-      long,
-      items
-    }
+    const data = new FormData()
+
+    data.append('name', name)
+    data.append('email', email)
+    data.append('whatsapp', whatsapp)
+    data.append('uf', uf)
+    data.append('city', city)
+    data.append('lat', String(lat))
+    data.append('long', String(long))
+    data.append('items', items.join(','))
+    if(selectedFile) data.append('image', selectedFile)
 
     await api.post('/points', data)
 
@@ -154,6 +158,8 @@ const CreatePoint = () => {
 
       <form onSubmit={handleSubmit}>
         <h1>Cadastro do <br/> ponto de coleta</h1>
+
+        <Dropzone onFileUploaded={setSelectedFile} />
 
         <fieldset>
           <legend>
